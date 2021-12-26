@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <RootNamespace>YND_Mover</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="CodeWalker.Core">
+      <HintPath>..\..\..\..\Desktop\CodeWalker30_dev39\CodeWalker.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX">
+      <HintPath>..\..\..\..\Desktop\CodeWalker30_dev39\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Mathematics">
+      <HintPath>..\..\..\..\Desktop\CodeWalker30_dev39\SharpDX.Mathematics.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
