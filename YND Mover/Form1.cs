@@ -13,15 +13,35 @@ namespace YND_Mover
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string AreaID = GetAreaIDfromPosition(new Vector3(-1219.33f, -4996.09f, 0f)).ToString();
-            MessageBox.Show(AreaID);
+            List<string> YNDfiles = lbFiles.Items.Cast<string>().ToList();
+
+            foreach (var YNDf in YNDfiles)
+            {
+                YndFile yndFile = new();
+                yndFile.Load(File.ReadAllBytes(YNDf));
+
+                foreach (var node in yndFile.Nodes)
+                {
+                    node.SetPosition(node.Position += new Vector3(float.Parse(tbX.Text), float.Parse(tbY.Text), float.Parse(tbZ.Text)));
+                    node.AreaID = (ushort)GetAreaIDfromPosition(node.Position);
+                    node.UpdateLinkLengths();
+                    yndFile.UpdateBvhForNode(node);
+
+                }
+
+                yndFile.BuildStructsOnSave = true;
+                yndFile.UpdateAllNodePositions();
+                yndFile.UpdateBoundingBox();
+
+            }
         }
 
         private void selectFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog
             {
-                Multiselect = true
+                Multiselect = true,
+                Filter = "(*.ynd)|*.ynd"
             };
 
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -40,24 +60,10 @@ namespace YND_Mover
             Application.Exit(); 
         }
 
-        private void tbXOffset_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void tbYOffset_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void tbZOffset_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
 
         public int GetAreaIDfromPosition(Vector3 abc)
         {
+            //code ported from ofio.v.xml.nodes.io.ms by Mixazzz
             int AreaID = 0;
             int Result = 0;
             float Xpos = -8192f;
@@ -89,6 +95,15 @@ namespace YND_Mover
             }
 
             return Result;
+        }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                tbOutput.Text = fbd.SelectedPath;
+            }
         }
     }
 }

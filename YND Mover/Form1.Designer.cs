@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TextBox tbXOffset;
-            System.Windows.Forms.TextBox tbYOffset;
-            System.Windows.Forms.TextBox tbZOffset;
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,45 +40,16 @@
             this.btnStart = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnBrowse = new System.Windows.Forms.Button();
-            tbXOffset = new System.Windows.Forms.TextBox();
-            tbYOffset = new System.Windows.Forms.TextBox();
-            tbZOffset = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbOutput = new System.Windows.Forms.TextBox();
+            this.tbX = new System.Windows.Forms.TextBox();
+            this.tbY = new System.Windows.Forms.TextBox();
+            this.tbZ = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tbXOffset
-            // 
-            tbXOffset.Anchor = System.Windows.Forms.AnchorStyles.None;
-            tbXOffset.Location = new System.Drawing.Point(420, 12);
-            tbXOffset.Name = "tbXOffset";
-            tbXOffset.PlaceholderText = "0.0";
-            tbXOffset.Size = new System.Drawing.Size(110, 23);
-            tbXOffset.TabIndex = 2;
-            tbXOffset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            tbXOffset.TextChanged += new System.EventHandler(this.tbXOffset_TextChanged);
-            // 
-            // tbYOffset
-            // 
-            tbYOffset.Anchor = System.Windows.Forms.AnchorStyles.None;
-            tbYOffset.Location = new System.Drawing.Point(538, 12);
-            tbYOffset.Name = "tbYOffset";
-            tbYOffset.PlaceholderText = "0.0";
-            tbYOffset.Size = new System.Drawing.Size(114, 23);
-            tbYOffset.TabIndex = 2;
-            tbYOffset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            tbYOffset.TextChanged += new System.EventHandler(this.tbYOffset_TextChanged);
-            // 
-            // tbZOffset
-            // 
-            tbZOffset.Anchor = System.Windows.Forms.AnchorStyles.None;
-            tbZOffset.Location = new System.Drawing.Point(658, 12);
-            tbZOffset.Name = "tbZOffset";
-            tbZOffset.PlaceholderText = "0.0";
-            tbZOffset.Size = new System.Drawing.Size(115, 23);
-            tbZOffset.TabIndex = 2;
-            tbZOffset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            tbZOffset.TextChanged += new System.EventHandler(this.tbZOffset_TextChanged);
             // 
             // menuStrip1
             // 
@@ -137,7 +105,7 @@
             this.lbFiles.ItemHeight = 15;
             this.lbFiles.Location = new System.Drawing.Point(12, 27);
             this.lbFiles.Name = "lbFiles";
-            this.lbFiles.Size = new System.Drawing.Size(776, 364);
+            this.lbFiles.Size = new System.Drawing.Size(776, 319);
             this.lbFiles.TabIndex = 1;
             // 
             // statusStrip1
@@ -159,10 +127,10 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tableLayoutPanel1.Controls.Add(this.btnStart, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(tbYOffset, 4, 0);
-            this.tableLayoutPanel1.Controls.Add(tbZOffset, 5, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnBrowse, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(tbXOffset, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tbX, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tbY, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tbZ, 5, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 398);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
@@ -202,12 +170,67 @@
             this.btnBrowse.TabIndex = 3;
             this.btnBrowse.Text = "Browse";
             this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.03105F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 87.96895F));
+            this.tableLayoutPanel2.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.tbOutput, 1, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(15, 352);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(773, 40);
+            this.tableLayoutPanel2.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(24, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 15);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Output";
+            // 
+            // tbOutput
+            // 
+            this.tbOutput.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbOutput.Location = new System.Drawing.Point(110, 8);
+            this.tbOutput.Name = "tbOutput";
+            this.tbOutput.Size = new System.Drawing.Size(645, 23);
+            this.tbOutput.TabIndex = 1;
+            // 
+            // tbX
+            // 
+            this.tbX.Location = new System.Drawing.Point(418, 3);
+            this.tbX.Name = "tbX";
+            this.tbX.Size = new System.Drawing.Size(100, 23);
+            this.tbX.TabIndex = 4;
+            // 
+            // tbY
+            // 
+            this.tbY.Location = new System.Drawing.Point(538, 3);
+            this.tbY.Name = "tbY";
+            this.tbY.Size = new System.Drawing.Size(100, 23);
+            this.tbY.TabIndex = 5;
+            // 
+            // tbZ
+            // 
+            this.tbZ.Location = new System.Drawing.Point(658, 3);
+            this.tbZ.Name = "tbZ";
+            this.tbZ.Size = new System.Drawing.Size(100, 23);
+            this.tbZ.TabIndex = 6;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 472);
+            this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.lbFiles);
@@ -219,6 +242,8 @@
             this.menuStrip1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -236,10 +261,13 @@
         private TableLayoutPanel tableLayoutPanel1;
         private Button btnStart;
         private Label label1;
-        private TextBox tbXOffset;
-        private TextBox tbYOffset;
-        private TextBox tbZOffset;
         private Button btnBrowse;
         private ToolStripMenuItem clearListToolStripMenuItem;
+        private TableLayoutPanel tableLayoutPanel2;
+        private Label label2;
+        private TextBox tbOutput;
+        private TextBox tbX;
+        private TextBox tbY;
+        private TextBox tbZ;
     }
 }
